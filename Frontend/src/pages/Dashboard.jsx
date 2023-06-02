@@ -78,6 +78,12 @@ const Dashboard = () => {
       );
       let data = await res.json();
       console.log(data);
+      setText(() =>{
+        return {
+          task : "",
+          date : ""
+        }
+      })
       setLoadingPage(!loadingPage);
     } catch (error) {
       console.log(error);
@@ -172,8 +178,9 @@ const Dashboard = () => {
           <Input
             type="text"
             name="task"
+            value={text.task}
             onChange={handleChange}
-            placeholder="enter task"
+            placeholder="Enter your task Details"
             w="500px"
             border="2px solid black "
             marginRight="10px"
@@ -181,6 +188,7 @@ const Dashboard = () => {
           <Input
             type="date"
             name="date"
+            value={text.date}
             onChange={handleChange}
             max={currentDate}
             w="160px"
@@ -207,7 +215,7 @@ const Dashboard = () => {
         <div>
           <div style={{ textAlign: "center" }}>
             <TableContainer w="80%" ml="10%">
-              <Table variant="striped" colorScheme="teal">
+              <Table colorScheme="black">
                 <Thead backgroundColor="#000">
                   <Tr>
                     <Th fontSize="24px" color="#fff" padding="20px" w="20%">
@@ -228,8 +236,8 @@ const Dashboard = () => {
                   allTask.map((el) => {
                     return (
                       <Tbody key={el._id}>
-                        <Tr>
-                          <Td>{el.date}</Td>
+                        <Tr border="1px solid black">
+                          <Td >{el.date}</Td>
                           <Td>{el.task}</Td>
                           <Td>
                             <Button
