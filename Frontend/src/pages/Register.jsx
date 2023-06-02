@@ -40,9 +40,9 @@ const Register = () => {
     }
   };
   return (
-    <div style={{ textAlign: "center", marginTop: "200px" }}>
+    <div className="registerContainer">
       <div>
-        <Heading size="2xl" m="50px">
+        <Heading size="2xl" m="25px">
           Register Page
         </Heading>
       </div>
@@ -51,7 +51,7 @@ const Register = () => {
         placeholder="Enter Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        w="500px"
+        w="300px"
         border="2px solid black "
       />
       <br />
@@ -61,7 +61,7 @@ const Register = () => {
         placeholder="Enter Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        w="500px"
+        w="300px"
         border="2px solid black "
       />
       <br />
@@ -71,7 +71,7 @@ const Register = () => {
         placeholder="Enter Password"
         value={password}
         onChange={(e) => setPass(e.target.value)}
-        w="500px"
+        w="300px"
         border="2px solid black "
       />
       <br />

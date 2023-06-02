@@ -1,3 +1,37 @@
 /* * {
   background-color: rgb(2, 253, 132);
 } */
+body{
+  height: 100vh;
+  justify-content: center;
+}
+.loginContainer{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    height: 40vh;
+    width: 60vh;
+    border-radius: 10%;
+    padding: 20px;
+    box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px #0b0eca, 0 0 30px #0b0eca,
+    0 0 40px #1e0bca, 0 0 50px #0e0bca;
+    -webkit-animation: blink 0.7s infinite alternate;
+    animation: blink 0.7s infinite alternate;
+}
+.registerContainer{
+  position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    height: 55vh;
+    width: 60vh;
+    border-radius: 10%;
+    padding: 20px;
+    box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px #0b0eca, 0 0 30px #0b0eca,
+    0 0 40px #1e0bca, 0 0 50px #0e0bca;
+    -webkit-animation: blink 0.7s infinite alternate;
+    animation: blink 0.7s infinite alternate;
+}

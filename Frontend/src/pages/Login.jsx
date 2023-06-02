@@ -42,11 +42,11 @@ const Login = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "200px" }}>
+    <div className="loginContainer">
       <Heading size="2xl">Login</Heading>
       <br />
       <Input
-        w="500px"
+        w="300px"
         border="2px solid black "
         type="email"
         placeholder="Enter Email"
@@ -56,7 +56,7 @@ const Login = () => {
       <br />
       <br />
       <Input
-        w="500px"
+        w="300px"
         border="2px solid black "
         type="password"
         placeholder="Enter Password"
