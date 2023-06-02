@@ -1,7 +1,4 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -39,17 +36,4 @@
 
 .read-the-docs {
   color: #888;
-}
-
-/* giving table style */
-table{
-  width: 800px;
-}
-table, th, td {
-  border: 1px solid white;
-  border-collapse: collapse;
-}
-th, td {
-  background-color: #96D4D4;
-  padding: 10px;
 }

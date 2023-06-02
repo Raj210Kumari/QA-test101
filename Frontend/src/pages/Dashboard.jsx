@@ -13,6 +13,14 @@ import {
   Input,
   Button,
   Text,
+  Heading,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
 } from "@chakra-ui/react";
 
 const Dashboard = () => {
@@ -57,14 +65,17 @@ const Dashboard = () => {
     const token = JSON.parse(localStorage.getItem("token"));
     console.log(token);
     try {
-      let res = await fetch(`https://ill-gold-hippopotamus-hat.cyclic.app/sprint/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          token: token.token,
-        },
-        body: JSON.stringify(text),
-      });
+      let res = await fetch(
+        `https://ill-gold-hippopotamus-hat.cyclic.app/sprint/add`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            token: token.token,
+          },
+          body: JSON.stringify(text),
+        }
+      );
       let data = await res.json();
       console.log(data);
       setLoadingPage(!loadingPage);
@@ -76,13 +87,16 @@ const Dashboard = () => {
     const token = JSON.parse(localStorage.getItem("token"));
     console.log(token);
     try {
-      let res = await fetch(`https://ill-gold-hippopotamus-hat.cyclic.app/sprint/get`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          token: token.token,
-        },
-      });
+      let res = await fetch(
+        `https://ill-gold-hippopotamus-hat.cyclic.app/sprint/get`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: token.token,
+          },
+        }
+      );
       let data = await res.json();
       console.log(data);
       setAllTask(data);
@@ -94,13 +108,16 @@ const Dashboard = () => {
     const token = JSON.parse(localStorage.getItem("token"));
     console.log(token);
     try {
-      let res = await fetch(`https://ill-gold-hippopotamus-hat.cyclic.app/sprint/delete/${sprintId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          token: token.token,
-        },
-      });
+      let res = await fetch(
+        `https://ill-gold-hippopotamus-hat.cyclic.app/sprint/delete/${sprintId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            token: token.token,
+          },
+        }
+      );
       alert("Todo deleted successfully");
       let data = await res.json();
       console.log(data);
@@ -114,14 +131,17 @@ const Dashboard = () => {
     const token = JSON.parse(localStorage.getItem("token"));
     console.log(token);
     try {
-      let res = await fetch(`https://ill-gold-hippopotamus-hat.cyclic.app/sprint/update/${updateId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          token: token.token,
-        },
-        body: JSON.stringify(updatedText),
-      });
+      let res = await fetch(
+        `https://ill-gold-hippopotamus-hat.cyclic.app/sprint/update/${updateId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            token: token.token,
+          },
+          body: JSON.stringify(updatedText),
+        }
+      );
       alert("Task updated successfully");
       let data = await res.json();
       console.log(data);
@@ -143,69 +163,108 @@ const Dashboard = () => {
   console.log(updateId);
 
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <div>
-        <h1>Dashboard</h1>
-        <input
-          type="text"
-          name="task"
-          onChange={handleChange}
-          placeholder="enter task"
-        />
-        <input
-          type="date"
-          name="date"
-          onChange={handleChange}
-          max={currentDate}
-        />
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
-      <div>
+        <Heading size="2xl" m="50px">
+          Dashboard
+        </Heading>
         <div>
-          <h1>All Task</h1>
+          <Input
+            type="text"
+            name="task"
+            onChange={handleChange}
+            placeholder="enter task"
+            w="500px"
+            border="2px solid black "
+            marginRight="10px"
+          />
+          <Input
+            type="date"
+            name="date"
+            onChange={handleChange}
+            max={currentDate}
+            w="160px"
+            border="2px solid black "
+            marginRight="10px"
+          />
+          <Button
+            onClick={handleSubmit}
+            p="6"
+            marginRight="10px"
+            fontSize="24px"
+            fontWeight="900"
+          >
+            Submit
+          </Button>
+        </div>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <div>
+          <Heading size="2xl" m="50px">
+            All Task
+          </Heading>
         </div>
         <div>
-          <div>
-            {/* <p>{el.date}----{el.task}</p> */}
-            {/* <button onClick={() => updateData(el._id)}>Update</button> update is no working */}
-            {/* <button onClick={()=>deleteData(el._id)}>Deleted</button> */}
-            <table>
-              <thead>
-                <tr>
-                  <th style={{ width: "200px" }}>Date</th>
-                  <th style={{ width: "500px" }}>Task</th>
-                </tr>
-              </thead>
-              {allTask ? (
-                allTask.map((el) => {
-                  return (
-                    <tbody key={el._id}>
-                      <tr>
-                        <td>{el.date}</td>
-                        <td>{el.task}</td>
-                        <td>
-                          <button onClick={() => deleteData(el._id)}>
-                            Deleted
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            onClick={() => {
-                              onOpen();
-                              setUpdateId(el._id);
-                            }}
-                          >
-                            Update
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  );
-                })
-              ) : (
-                <Text>No task are present in backend</Text>
-              )}
-            </table>
+          <div style={{ textAlign: "center" }}>
+            <TableContainer w="80%" ml="10%">
+              <Table variant="striped" colorScheme="teal">
+                <Thead backgroundColor="#000">
+                  <Tr>
+                    <Th fontSize="24px" color="#fff" padding="20px" w="20%">
+                      Date
+                    </Th>
+                    <Th fontSize="24px" color="#fff" w="60%">
+                      Task
+                    </Th>
+                    <Th fontSize="24px" color="#fff" w="10%">
+                      Delete Task
+                    </Th>
+                    <Th fontSize="24px" color="#fff" w="10%">
+                      Update Task
+                    </Th>
+                  </Tr>
+                </Thead>
+                {allTask ? (
+                  allTask.map((el) => {
+                    return (
+                      <Tbody key={el._id}>
+                        <Tr>
+                          <Td>{el.date}</Td>
+                          <Td>{el.task}</Td>
+                          <Td>
+                            <Button
+                              onClick={() => deleteData(el._id)}
+                              ml="50px"
+                              bg="red"
+                              color="#fff"
+                              fontWeight="900"
+                            >
+                              Deleted
+                            </Button>
+                          </Td>
+                          <Td>
+                            <Button
+                              onClick={() => {
+                                onOpen();
+                                setUpdateId(el._id);
+                              }}
+                              ml="50px"
+                              bg="red"
+                              color="#fff"
+                              fontWeight="900"
+                            >
+                              Update
+                            </Button>
+                          </Td>
+                        </Tr>
+                      </Tbody>
+                    );
+                  })
+                ) : (
+                  <Text>No task are present in backend</Text>
+                )}
+              </Table>
+            </TableContainer>
           </div>
           <Modal
             initialFocusRef={initialRef}
